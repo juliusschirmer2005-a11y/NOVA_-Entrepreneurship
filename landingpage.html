@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PAUSA | Anti-Phishing Programme for Accounting & Law Offices</title>
+    <meta name="description" content="Done-for-you anti-phishing training for accounting and law offices of 10–50 people in Portugal. We set it up, run it and report on it – your team spends 10 minutes a month.">
+    <meta name="theme-color" content="#0F172A">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="PAUSA – Anti-Phishing Programme for Accounting & Law Offices">
+    <meta property="og:description" content="Your team is your best firewall. We train it for you. Free starting test for the first 10 offices.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231D4ED8'/%3E%3Ctext x='32' y='45' font-family='Arial,sans-serif' font-weight='900' font-size='38' fill='white' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Inter -->
@@ -42,9 +48,29 @@
             backdrop-filter: blur(8px);
             box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.25);
         }
+        /* Anchor jumps (e.g. #rules) land below the fixed 80px navbar instead of behind it */
+        section[id] {
+            scroll-margin-top: 80px;
+        }
         .active-nav-link {
             color: #38BDF8 !important;
             font-weight: 600;
+        }
+        /* Quiz: answered options are locked */
+        .quiz-opt-btn:disabled {
+            cursor: default;
+        }
+        .quiz-opt-btn.is-correct {
+            border-color: #16A34A !important;
+            background-color: #F0FDF4 !important;
+        }
+        .quiz-opt-btn.is-wrong {
+            border-color: #DC2626 !important;
+            background-color: #FEF2F2 !important;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .animate-ping, .animate-pulse { animation: none !important; }
         }
         /* Custom scrollbar */
         ::-webkit-scrollbar {
@@ -111,7 +137,7 @@
 
                 <!-- Mobile Hamburger Button -->
                 <div class="lg:hidden flex items-center">
-                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 focus:outline-none">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" class="p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 focus:outline-none">
                         <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                         <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                     </button>
@@ -461,7 +487,7 @@
                     </p>
                     <div class="pt-2">
                         <button onclick="openModal('report-modal')" class="text-xs font-bold text-blue-600 hover:text-blue-800 underline">
-                            Click here to preview a real sample Quarterly Report →
+                            Preview a sample quarterly report →
                         </button>
                     </div>
                 </div>
@@ -473,11 +499,11 @@
                         <h3 class="text-xl font-bold text-pausa-navy">Final Assessment & Employee Training Certificates</h3>
                     </div>
                     <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
-                        A final simulation test measures full-year habit formation. Official training certificates are issued for every employee—providing tangible proof for clients, professional regulators, auditors, and cyber insurance policies.
+                        A final simulation test measures full-year habit formation. Training certificates are issued for every employee—providing tangible proof for clients, professional regulators, auditors, and cyber insurance policies.
                     </p>
                     <div class="pt-3 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
                         <span>Year 2 Renewal Plan Included</span>
-                        <span>Full GDPR Compliance Audit Trail</span>
+                        <span>Training records for audits</span>
                     </div>
                 </div>
 
@@ -540,7 +566,7 @@
                         </p>
                     </div>
                     <div class="mt-4 pt-3 border-t border-slate-700/60 text-[11px] text-slate-400">
-                        Stops invoice fraud completely.
+                        Stops most invoice fraud.
                     </div>
                 </div>
 
@@ -633,7 +659,7 @@
                     <!-- Question 2 -->
                     <div id="quiz-q2" class="quiz-question-block hidden space-y-6">
                         <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl text-xs sm:text-sm text-slate-700 font-mono">
-                            <p><strong class="text-slate-900">Scenario 2:</strong> You get an email with subject <em>"Your mailbox is 98% full"</em> from <span class="text-red-600">"helpdesk@Office-login.eu"</span> warning that emails will be blocked in 24 hours unless you click a link to verify.</p>
+                            <p><strong class="text-slate-900">Scenario 2:</strong> You get an email with subject <em>"Your mailbox is 98% full"</em> from <span class="text-red-600">"helpdesk@0ffice-login.eu"</span> warning that emails will be blocked in 24 hours unless you click a link to verify.</p>
                         </div>
                         
                         <h4 class="font-bold text-slate-800 text-base">What warning signs indicate this is phishing?</h4>
@@ -641,7 +667,7 @@
                         <div class="space-y-3">
                             <button onclick="answerQuiz(2, 'A')" class="quiz-opt-btn w-full text-left p-4 rounded-xl border border-slate-200 hover:border-blue-500 hover:bg-slate-50 transition text-sm font-medium text-slate-700 flex items-start space-x-3">
                                 <span class="font-bold text-blue-600">A.</span>
-                                <span>Artificial deadline (24 hours), generic domain with a zero instead of O, and asking to log in from a link.</span>
+                                <span>Artificial deadline (24 hours), a lookalike domain with a zero instead of an O, and a request to log in from a link.</span>
                             </button>
                             <button onclick="answerQuiz(2, 'B')" class="quiz-opt-btn w-full text-left p-4 rounded-xl border border-slate-200 hover:border-blue-500 hover:bg-slate-50 transition text-sm font-medium text-slate-700 flex items-start space-x-3">
                                 <span class="font-bold text-blue-600">B.</span>
@@ -692,7 +718,7 @@
                         <div class="w-20 h-20 bg-blue-100 text-blue-900 rounded-full flex items-center justify-center font-black text-3xl mx-auto shadow-inner" id="quiz-final-score">
                             3/3
                         </div>
-                        <h3 class="text-2xl font-bold text-pausa-navy">Great Job!</h3>
+                        <h3 id="quiz-result-title" class="text-2xl font-bold text-pausa-navy">Great Job!</h3>
                         <p class="text-sm text-slate-600 max-w-md mx-auto">
                             You've seen how PAUSA reinforces security habits through short, clear scenarios without creating fear or technical friction.
                         </p>
@@ -753,7 +779,7 @@
 
                     <button onclick="openModal('report-modal')" class="px-6 py-3.5 bg-pausa-navy text-white text-sm font-bold rounded-xl hover:bg-slate-800 transition shadow-lg flex items-center space-x-2">
                         <svg class="w-5 h-5 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                        <span>Preview Sample Quarterly Report Modal</span>
+                        <span>Preview Sample Quarterly Report</span>
                     </button>
                 </div>
 
@@ -892,7 +918,7 @@
                 <div class="space-y-3">
                     
                     <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
-                        <button onclick="toggleFaq('faq-1')" class="w-full p-5 text-left font-bold text-sm text-slate-800 flex justify-between items-center">
+                        <button onclick="toggleFaq('faq-1')" aria-expanded="false" aria-controls="faq-1" class="w-full p-5 text-left font-bold text-sm text-slate-800 flex justify-between items-center">
                             <span>Is sending practice phishing emails allowed?</span>
                             <span id="faq-1-icon" class="text-xl">+</span>
                         </button>
@@ -902,7 +928,7 @@
                     </div>
 
                     <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
-                        <button onclick="toggleFaq('faq-2')" class="w-full p-5 text-left font-bold text-sm text-slate-800 flex justify-between items-center">
+                        <button onclick="toggleFaq('faq-2')" aria-expanded="false" aria-controls="faq-2" class="w-full p-5 text-left font-bold text-sm text-slate-800 flex justify-between items-center">
                             <span>What happens if an employee clicks a practice email?</span>
                             <span id="faq-2-icon" class="text-xl">+</span>
                         </button>
@@ -912,7 +938,7 @@
                     </div>
 
                     <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
-                        <button onclick="toggleFaq('faq-3')" class="w-full p-5 text-left font-bold text-sm text-slate-800 flex justify-between items-center">
+                        <button onclick="toggleFaq('faq-3')" aria-expanded="false" aria-controls="faq-3" class="w-full p-5 text-left font-bold text-sm text-slate-800 flex justify-between items-center">
                             <span>Do we need internal IT technical knowledge?</span>
                             <span id="faq-3-icon" class="text-xl">+</span>
                         </button>
@@ -950,7 +976,7 @@
                         Through extensive field interviews with Portuguese accounting offices and law firms, we uncovered a recurring gap: <strong>80% of office owners consider cybersecurity a priority, yet over 70% do not train their staff.</strong> Existing software platforms are built for enterprise IT departments and demand time that small offices simply do not have.
                     </p>
                     <p>
-                        We created PAUSA as a "done-for-you" habit training programme that delivers enterprise-grade protection in just 10 minutes a month per person—without taking time away from client work.
+                        We created PAUSA as a "done-for-you" habit training programme that builds safe email habits in just 10 minutes a month per person—without taking time away from client work.
                     </p>
                 </div>
             </div>
@@ -1040,7 +1066,7 @@
                 <p class="text-slate-500">Pilot Programme 2026/27 — Developed at Nova School of Business and Economics, Lisbon.</p>
             </div>
 
-            <div class="flex space-x-6">
+            <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
                 <a href="#problem" class="hover:text-white">Problem</a>
                 <a href="#why-pausa" class="hover:text-white">Why PAUSA</a>
                 <a href="#rules" class="hover:text-white">Rules</a>
@@ -1058,29 +1084,32 @@
     =========================================== -->
 
     <!-- MODAL 1: LEAD CAPTURE FORM -->
-    <div id="lead-modal" class="fixed inset-0 z-50 hidden bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+    <div id="lead-modal" role="dialog" aria-modal="true" aria-label="Request your free practice test" class="fixed inset-0 z-50 hidden bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative border border-slate-200 my-8">
-            <button onclick="closeModal('lead-modal')" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 font-bold text-xl">✕</button>
+            <button onclick="closeModal('lead-modal')" aria-label="Close" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 font-bold text-xl">✕</button>
 
             <div id="lead-form-container">
                 <span class="text-xs font-bold text-blue-600 uppercase tracking-widest block mb-1">Free Starting Test</span>
                 <h3 class="text-2xl font-bold text-pausa-navy mb-2">Request Your Free Practice Test</h3>
                 <p class="text-xs text-slate-500 mb-6">We send one harmless practice email to your team and report the exact results to you. No credit card required.</p>
 
-                <form onsubmit="handleLeadSubmit(event)" class="space-y-4">
+                <form id="lead-form" onsubmit="handleLeadSubmit(event)" class="space-y-4">
+                    <input type="hidden" name="_subject" value="PAUSA – new free starting test request">
+                    <input type="hidden" name="form" value="lead">
+                    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true">
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Office Name</label>
-                        <input type="text" required placeholder="e.g. Silva & Associados Sociedade de Advogados" class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        <label for="lead-office" class="block text-xs font-bold text-slate-700 uppercase mb-1">Office Name</label>
+                        <input id="lead-office" name="office_name" autocomplete="organization" type="text" required placeholder="e.g. Silva & Associados Sociedade de Advogados" class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Contact Name</label>
-                            <input type="text" required placeholder="Dr. Ana Silva" class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                            <label for="lead-contact" class="block text-xs font-bold text-slate-700 uppercase mb-1">Contact Name</label>
+                            <input id="lead-contact" name="contact_name" autocomplete="name" type="text" required placeholder="Dr. Ana Silva" class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Office Type</label>
-                            <select class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                            <label for="lead-type" class="block text-xs font-bold text-slate-700 uppercase mb-1">Office Type</label>
+                            <select id="lead-type" name="office_type" class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
                                 <option>Accounting Office</option>
                                 <option>Law Firm</option>
                                 <option>Consulting / Financial</option>
@@ -1090,26 +1119,27 @@
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Work Email</label>
-                            <input type="email" required placeholder="ana.silva@office.pt" class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                            <label for="lead-email" class="block text-xs font-bold text-slate-700 uppercase mb-1">Work Email</label>
+                            <input id="lead-email" name="email" autocomplete="email" type="email" required placeholder="ana.silva@office.pt" class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Phone Number</label>
-                            <input type="tel" required placeholder="+351 912 345 678" class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                            <label for="lead-phone" class="block text-xs font-bold text-slate-700 uppercase mb-1">Phone Number</label>
+                            <input id="lead-phone" name="phone" autocomplete="tel" type="tel" required placeholder="+351 912 345 678" class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Number of Team Members</label>
-                        <select class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                            <option>10 to 19 people</option>
-                            <option>20 to 49 people</option>
+                        <label for="lead-size" class="block text-xs font-bold text-slate-700 uppercase mb-1">Number of Team Members</label>
+                        <select id="lead-size" name="team_size" class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
                             <option>Under 10 people</option>
+                            <option selected>10 to 19 people</option>
+                            <option>20 to 49 people</option>
                             <option>50+ people</option>
                         </select>
                     </div>
 
-                    <button type="submit" class="w-full py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl shadow-lg transition text-sm">
+                    <p id="lead-form-error" class="hidden text-xs text-red-600" role="alert"></p>
+                    <button type="submit" class="w-full py-4 bg-blue-600 hover:bg-blue-500 disabled:opacity-60 text-white font-bold rounded-xl shadow-lg transition text-sm">
                         Submit Request for Free Starting Test
                     </button>
                 </form>
@@ -1130,9 +1160,9 @@
     </div>
 
     <!-- MODAL 2: SAMPLE QUARTERLY REPORT PREVIEW -->
-    <div id="report-modal" class="fixed inset-0 z-50 hidden bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+    <div id="report-modal" role="dialog" aria-modal="true" aria-label="Sample quarterly report" class="fixed inset-0 z-50 hidden bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative border border-slate-200 my-8 max-h-[90vh] overflow-y-auto">
-            <button onclick="closeModal('report-modal')" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 font-bold text-xl">✕</button>
+            <button onclick="closeModal('report-modal')" aria-label="Close" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 font-bold text-xl">✕</button>
 
             <div class="border border-slate-200 p-6 rounded-2xl bg-slate-50 space-y-6">
                 
@@ -1140,7 +1170,7 @@
                 <div class="flex justify-between items-start border-b border-slate-200 pb-4">
                     <div>
                         <span class="text-2xl font-black text-pausa-navy">PAUSA</span>
-                        <p class="text-xs text-slate-500 font-semibold uppercase">Quarterly Security Report — Q1 2026</p>
+                        <p class="text-xs text-slate-500 font-semibold uppercase">Quarterly Security Report — Sample</p>
                     </div>
                     <div class="text-right text-xs text-slate-500">
                         <p><strong>Office:</strong> Example Law Firm (18 people)</p>
@@ -1165,13 +1195,13 @@
                                 <td class="p-2 font-semibold">Clicked practice email</td>
                                 <td class="p-2 text-red-600 font-bold">39%</td>
                                 <td class="p-2 text-green-600 font-bold">14%</td>
-                                <td class="p-2 text-green-600 font-bold">↓ Improved (-25%)</td>
+                                <td class="p-2 text-green-600 font-bold">↓ −25 pp</td>
                             </tr>
                             <tr>
                                 <td class="p-2 font-semibold">Reported practice email</td>
                                 <td class="p-2 text-slate-500">11%</td>
                                 <td class="p-2 text-sky-600 font-bold">50%</td>
-                                <td class="p-2 text-sky-600 font-bold">↑ Improved (+39%)</td>
+                                <td class="p-2 text-sky-600 font-bold">↑ +39 pp</td>
                             </tr>
                             <tr>
                                 <td class="p-2 font-semibold">Time to first report</td>
@@ -1183,7 +1213,7 @@
                                 <td class="p-2 font-semibold">Modules completed</td>
                                 <td class="p-2 text-slate-500">-</td>
                                 <td class="p-2 text-slate-900 font-bold">16 of 18</td>
-                                <td class="p-2 text-slate-900 font-bold">88.8% Rate</td>
+                                <td class="p-2 text-slate-900 font-bold">89% rate</td>
                             </tr>
                         </tbody>
                     </table>
@@ -1212,19 +1242,22 @@
     </div>
 
     <!-- MODAL 3: EVALUATION FORM MODAL -->
-    <div id="evaluation-modal" class="fixed inset-0 z-50 hidden bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+    <div id="evaluation-modal" role="dialog" aria-modal="true" aria-label="Office evaluation survey" class="fixed inset-0 z-50 hidden bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl relative border border-slate-200 my-8 max-h-[90vh] overflow-y-auto">
-            <button onclick="closeModal('evaluation-modal')" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 font-bold text-xl">✕</button>
+            <button onclick="closeModal('evaluation-modal')" aria-label="Close" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 font-bold text-xl">✕</button>
 
             <div id="eval-form-container">
                 <span class="text-xs font-bold text-blue-600 uppercase tracking-widest block mb-1">Nova SBE Research</span>
                 <h3 class="text-2xl font-bold text-pausa-navy mb-2">5-Min Office Evaluation Survey</h3>
                 <p class="text-xs text-slate-500 mb-6">Your feedback directly shapes our PAUSA pilot programme for accounting and law offices in Lisbon and Portugal.</p>
 
-                <form onsubmit="handleEvalSubmit(event)" class="space-y-4">
+                <form id="eval-form" onsubmit="handleEvalSubmit(event)" class="space-y-4">
+                    <input type="hidden" name="_subject" value="PAUSA – evaluation survey answer">
+                    <input type="hidden" name="form" value="evaluation">
+                    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true">
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">1. Has your office experienced suspicious emails recently?</label>
-                        <select class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        <label for="eval-q1" class="block text-xs font-bold text-slate-700 uppercase mb-1">1. Has your office experienced suspicious emails recently?</label>
+                        <select id="eval-q1" name="suspicious_emails" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none">
                             <option>In the last week</option>
                             <option>In the last month</option>
                             <option>In the last 12 months</option>
@@ -1233,8 +1266,8 @@
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">2. Has your staff ever had cybersecurity training?</label>
-                        <select class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        <label for="eval-q2" class="block text-xs font-bold text-slate-700 uppercase mb-1">2. Has your staff ever had cybersecurity training?</label>
+                        <select id="eval-q2" name="had_training" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none">
                             <option>No, never</option>
                             <option>Yes, in the last 12 months</option>
                             <option>Yes, longer ago</option>
@@ -1242,8 +1275,8 @@
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">3. How does ~10 minutes per person per month sound for your office?</label>
-                        <select class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        <label for="eval-q3" class="block text-xs font-bold text-slate-700 uppercase mb-1">3. How does ~10 minutes per person per month sound for your office?</label>
+                        <select id="eval-q3" name="ten_minutes_fit" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none">
                             <option>Fits well with our workflow</option>
                             <option>Too much time</option>
                             <option>We could do more</option>
@@ -1251,11 +1284,12 @@
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Your Email (Optional for feedback updates)</label>
-                        <input type="email" placeholder="office@law-accounting.pt" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        <label for="eval-email" class="block text-xs font-bold text-slate-700 uppercase mb-1">Your Email (Optional for feedback updates)</label>
+                        <input id="eval-email" name="email" type="email" placeholder="office@law-accounting.pt" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none">
                     </div>
 
-                    <button type="submit" class="w-full py-3.5 bg-pausa-navy hover:bg-slate-800 text-white font-bold rounded-xl shadow transition text-xs">
+                    <p id="eval-form-error" class="hidden text-xs text-red-600" role="alert"></p>
+                    <button type="submit" class="w-full py-3.5 bg-pausa-navy hover:bg-slate-800 disabled:opacity-60 text-white font-bold rounded-xl shadow transition text-xs">
                         Submit Evaluation Form
                     </button>
                 </form>
@@ -1277,6 +1311,12 @@
          13. JAVASCRIPT LOGIC
     =========================================== -->
     <script>
+        // ===== CONFIG =====
+        // Form submissions currently go nowhere unless this is set.
+        // Free setup (2 min): create a form at https://formspree.io, then paste its URL here,
+        // e.g. 'https://formspree.io/f/abcdwxyz'. Both forms (lead + evaluation) can share it.
+        const FORM_ENDPOINT = '';
+
         // --- Navbar Scroll Handling ---
         window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
@@ -1293,23 +1333,29 @@
             const hamburger = document.getElementById('hamburger-icon');
             const close = document.getElementById('close-icon');
             
-            if (menu.classList.contains('hidden')) {
-                menu.classList.remove('hidden');
-                hamburger.classList.add('hidden');
-                close.classList.remove('hidden');
-            } else {
-                menu.classList.add('hidden');
-                hamburger.classList.remove('hidden');
-                close.classList.add('hidden');
-            }
+            const willOpen = menu.classList.contains('hidden');
+            menu.classList.toggle('hidden', !willOpen);
+            hamburger.classList.toggle('hidden', willOpen);
+            close.classList.toggle('hidden', !willOpen);
+            const btn = document.getElementById('mobile-menu-btn');
+            btn.setAttribute('aria-expanded', String(willOpen));
+            btn.setAttribute('aria-label', willOpen ? 'Close menu' : 'Open menu');
         }
 
         // --- Modal Control Functions ---
         function openModal(modalId) {
             const modal = document.getElementById(modalId);
             if (modal) {
+                // Re-opening a form after a successful send shows the empty form again
+                const pairs = { 'lead-modal': 'lead', 'evaluation-modal': 'eval' };
+                if (pairs[modalId]) {
+                    document.getElementById(pairs[modalId] + '-form-container').classList.remove('hidden');
+                    document.getElementById(pairs[modalId] + '-success-container').classList.add('hidden');
+                }
                 modal.classList.remove('hidden');
                 document.body.style.overflow = 'hidden';
+                const firstField = modal.querySelector('input:not([type=hidden]):not([name=_gotcha]), select, button');
+                if (firstField) firstField.focus();
             }
         }
 
@@ -1317,7 +1363,7 @@
             const modal = document.getElementById(modalId);
             if (modal) {
                 modal.classList.add('hidden');
-                document.body.style.overflow = 'auto';
+                document.body.style.overflow = '';
             }
         }
 
@@ -1331,6 +1377,25 @@
                 }
             });
         });
+
+        // Close modal with Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key !== 'Escape') return;
+            ['lead-modal', 'report-modal', 'evaluation-modal'].forEach(id => {
+                const modal = document.getElementById(id);
+                if (modal && !modal.classList.contains('hidden')) closeModal(id);
+            });
+        });
+
+        // --- Highlight current section in the navbar ---
+        const navLinks = document.querySelectorAll('nav .nav-link');
+        const spy = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                navLinks.forEach(a => a.classList.toggle('active-nav-link', a.getAttribute('href') === '#' + entry.target.id));
+            });
+        }, { rootMargin: '-45% 0px -50% 0px' });
+        document.querySelectorAll('section[id]').forEach(sec => spy.observe(sec));
 
         // --- Timeline Tab Switching ---
         function switchTimelineTab(tabId) {
@@ -1358,16 +1423,16 @@
             1: {
                 correct: 'B',
                 titleCorrect: 'Correct! (PAUSA Rule #3)',
-                bodyCorrect: 'Bank details should change only after a phone call to a number you already have on file, never the number or email provided in the request.',
+                bodyCorrect: 'Never move money on the basis of an email alone. Call the person on a number you already have on file – never one given in the message. Secrecy plus urgency is a classic fake-boss pattern.',
                 titleIncorrect: 'Incorrect',
                 bodyIncorrect: 'Never send money based on an email alone, even if it uses a senior partner\'s name. Confirm payments by calling a known official number on file.'
             },
             2: {
                 correct: 'A',
-                titleCorrect: 'Well Spotted! (7 Warning Signs)',
-                bodyCorrect: 'Notice the deadline pressure ("24 hours"), the zero in place of O in "Office", and the link forcing a login attempt. One warning sign is enough to pause!',
+                titleCorrect: 'Well spotted! (3 warning signs)',
+                bodyCorrect: 'Notice the deadline pressure ("24 hours"), the zero in place of the O in "0ffice", and the link forcing a login attempt. One warning sign is enough to pause!',
                 titleIncorrect: 'Not quite',
-                bodyIncorrect: 'The email contains classic phishing red flags: urgent deadline, suspicious lookalike domain (Office-login.eu with a zero), and asking you to log in from a link.'
+                bodyIncorrect: 'The email contains classic phishing red flags: urgent deadline, suspicious lookalike domain (0ffice-login.eu with a zero), and asking you to log in from a link.'
             },
             3: {
                 correct: 'B',
@@ -1380,6 +1445,14 @@
 
         function answerQuiz(questionNum, option) {
             const data = quizData[questionNum];
+            const buttons = document.querySelectorAll('#quiz-q' + questionNum + ' .quiz-opt-btn');
+            if (buttons[0].disabled) return; // already answered – no double scoring
+            buttons.forEach(btn => {
+                btn.disabled = true;
+                const letter = btn.getAttribute('onclick').match(/'([A-C])'/)[1];
+                if (letter === data.correct) btn.classList.add('is-correct');
+                else if (letter === option) btn.classList.add('is-wrong');
+            });
             const feedbackBox = document.getElementById('quiz-feedback');
             const titleEl = document.getElementById('feedback-title');
             const bodyEl = document.getElementById('feedback-body');
@@ -1395,6 +1468,7 @@
                 bodyEl.innerText = data.bodyIncorrect;
             }
 
+            document.getElementById('quiz-next-btn').innerText = questionNum < 3 ? 'Next Question →' : 'See Result →';
             feedbackBox.classList.remove('hidden');
         }
 
@@ -1411,6 +1485,8 @@
                 // Show quiz summary
                 document.getElementById('quiz-progress-text').innerText = 'Completed';
                 document.getElementById('quiz-final-score').innerText = `${score}/3`;
+                document.getElementById('quiz-result-title').innerText =
+                    score === 3 ? 'Great job!' : score === 2 ? 'Almost there!' : 'This is exactly why training helps.';
                 document.getElementById('quiz-results').classList.remove('hidden');
             }
         }
@@ -1421,6 +1497,10 @@
             document.getElementById('quiz-results').classList.add('hidden');
             document.getElementById('quiz-feedback').classList.add('hidden');
             document.querySelectorAll('.quiz-question-block').forEach(q => q.classList.add('hidden'));
+            document.querySelectorAll('.quiz-opt-btn').forEach(btn => {
+                btn.disabled = false;
+                btn.classList.remove('is-correct', 'is-wrong');
+            });
             document.getElementById('quiz-q1').classList.remove('hidden');
             document.getElementById('quiz-progress-text').innerText = 'Question 1 of 3';
         }
@@ -1430,24 +1510,53 @@
             const content = document.getElementById(faqId);
             const icon = document.getElementById(faqId + '-icon');
 
-            if (content.classList.contains('hidden')) {
-                content.classList.remove('hidden');
-                icon.innerText = '−';
-            } else {
-                content.classList.add('hidden');
-                icon.innerText = '+';
-            }
+            const willOpen = content.classList.contains('hidden');
+            content.classList.toggle('hidden', !willOpen);
+            icon.innerText = willOpen ? '−' : '+';
+            const btn = document.querySelector('[aria-controls="' + faqId + '"]');
+            if (btn) btn.setAttribute('aria-expanded', String(willOpen));
         }
 
         // --- Form Submission Handlers ---
-        function handleLeadSubmit(e) {
+        async function submitForm(form, errorId) {
+            const errorEl = document.getElementById(errorId);
+            const submitBtn = form.querySelector('button[type=submit]');
+            errorEl.classList.add('hidden');
+
+            if (!FORM_ENDPOINT) {
+                console.warn('PAUSA: FORM_ENDPOINT is not set – this submission was NOT stored anywhere.');
+                return true;
+            }
+            submitBtn.disabled = true;
+            try {
+                const res = await fetch(FORM_ENDPOINT, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                return true;
+            } catch (err) {
+                errorEl.textContent = 'Sorry, that did not go through. Please try again in a moment.';
+                errorEl.classList.remove('hidden');
+                return false;
+            } finally {
+                submitBtn.disabled = false;
+            }
+        }
+
+        async function handleLeadSubmit(e) {
             e.preventDefault();
+            if (!(await submitForm(e.target, 'lead-form-error'))) return;
+            e.target.reset();
             document.getElementById('lead-form-container').classList.add('hidden');
             document.getElementById('lead-success-container').classList.remove('hidden');
         }
 
-        function handleEvalSubmit(e) {
+        async function handleEvalSubmit(e) {
             e.preventDefault();
+            if (!(await submitForm(e.target, 'eval-form-error'))) return;
+            e.target.reset();
             document.getElementById('eval-form-container').classList.add('hidden');
             document.getElementById('eval-success-container').classList.remove('hidden');
         }
